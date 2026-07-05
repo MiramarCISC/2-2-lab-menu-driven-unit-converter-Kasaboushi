@@ -39,7 +39,7 @@ bool isValidMenuChoice(int choice) {
         return true;
     }
     else {
-        return false;
+        return false;   
     }
 }
 
