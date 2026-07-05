@@ -4,53 +4,74 @@
 using namespace std;
 
 double inchesToCentimeters(double inches) {
-    // TODO: return inches converted to centimeters.
-    return 0.0;
+    // 2.54 cm to one in, so multiply by 2.54
+    return inches*CENTIMETERS_PER_INCH;
 }
 
 double centimetersToInches(double centimeters) {
-    // TODO: return centimeters converted to inches.
-    return 0.0;
+    // 2.54 centimeters to one inch. Therefore, divide the number by 2.54.
+    return centimeters/CENTIMETERS_PER_INCH;
 }
 
 double poundsToKilograms(double pounds) {
-    // TODO: return pounds converted to kilograms.
-    return 0.0;
+    // 2.205 pounds to 1 kg. Therefore, divide by 2.205.
+    return pounds/POUNDS_PER_KILOGRAM;
 }
 
 double kilogramsToPounds(double kilograms) {
-    // TODO: return kilograms converted to pounds.
-    return 0.0;
+    // 2.205 pounds to 1 kg. So, multiply by 2.205
+    return kilograms*POUNDS_PER_KILOGRAM;
 }
 
 double fahrenheitToCelsius(double fahrenheit) {
-    // TODO: return Fahrenheit converted to Celsius.
-    return 0.0;
+    // Fahrenheit to Celsius: F - 32 / 9/5
+    return (fahrenheit-32)/(9/5.0);
 }
 
 double celsiusToFahrenheit(double celsius) {
-    // TODO: return Celsius converted to Fahrenheit.
-    return 0.0;
+    // reverse the above formula: C * 9/5 + 32
+    return (celsius*(9/5.0)) +32;
 }
 
 bool isValidMenuChoice(int choice) {
-    // TODO: return true when choice is between EXIT_CHOICE and CELSIUS_TO_FAHRENHEIT.
-    return false;
+    // return true when choice is between EXIT_CHOICE and CELSIUS_TO_FAHRENHEIT.
+    if ((EXIT_CHOICE <= choice) && (choice <= CELSIUS_TO_FAHRENHEIT)) {
+        return true;
+    }
+    else {
+        return false;   
+    }
 }
 
 bool requiresNonNegativeValue(int choice) {
     // Length and weight conversions cannot use negative values.
     // Temperature conversions may use negative values.
     // TODO: return true for choices 1 through 4.
-    return false;
+    if ((INCHES_TO_CENTIMETERS <= choice) && (choice <= KILOGRAMS_TO_POUNDS)) {
+        return true;
+    }
+    return false; // return will break out of function, so the else is implicit and unneeded.
 }
 
 bool isValidValueForChoice(int choice, double value) {
-    // TODO:
     // 1. Invalid menu choices should return false.
     // 2. Length and weight conversions should reject negative values.
     // 3. Temperature conversions should allow negative values.
-    return false;
+
+    // first check if the choice is valid with isValidMenuChoice.
+    // then call check negative. If check negative is false, throw false if value < 0  
+
+    if (!isValidMenuChoice(choice)) {
+        return false;
+    }
+    else {
+        if (requiresNonNegativeValue(choice)) { //if it's negative and not allowed, return false now.
+            if (value < 0) {
+                return false;
+            }   
+        }
+    }
+    return true;
 }
 
 void printMenu() {
