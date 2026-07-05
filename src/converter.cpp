@@ -35,7 +35,7 @@ double celsiusToFahrenheit(double celsius) {
 
 bool isValidMenuChoice(int choice) {
     // return true when choice is between EXIT_CHOICE and CELSIUS_TO_FAHRENHEIT.
-    if (6 >= choice >=1){
+    if (6 >= choice >=0){
         return true;
     }
     else{
